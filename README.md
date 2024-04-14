@@ -53,7 +53,7 @@ Add your Gmail credentials in `.env` file:
 GMAIL_API_CLIENT_ID="your-api-client-id"
 GMAIL_API_CLIENT_SECRET="your-api-client-secret"
 GMAIL_API_CLIENT_REFRESH_TOKEN="your-api-client-refresh-token"
-GMAIL_API_CLIENT_MAIL="your-api-cleint-email"
+GMAIL_API_CLIENT_MAIL="your-api-client-email"
 
 # Suggested default settings to include
 MAIL_FROM_ADDRESS="from@mail.com"
