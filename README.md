@@ -25,6 +25,15 @@ You can install the package via composer:
 composer require iagofelicio/laravel-gmail-oauth2
 ```
 
+## Gmail Credentials
+
+To obtain a Gmail OAuth2 refresh token, you can refer to the instructions provided by the PHPMailer package on Github https://github.com/PHPMailer.
+
+For detailed instructions on generating a Gmail OAuth2 refresh token, we recommend following the excellent tutorial provided by Coding Yet https://www.codingyet.com/how-to-use-phpmailer-with-xoauth2/. 
+
+This tutorial walks you through the process step-by-step, ensuring a smooth setup for your secure email sending.
+
+
 ## Usage
 
 Edit `config/mail.php` adding the following line:
