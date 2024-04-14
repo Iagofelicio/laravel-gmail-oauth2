@@ -1,6 +1,6 @@
 <?php
 
-namespace Iagofelicio\LaravelGmailOauth2\Provider;
+namespace Iagofelicio\LaravelGmailOauth2\Providers;
 
 use Illuminate\Mail\MailManager;
 use Illuminate\Support\ServiceProvider;
