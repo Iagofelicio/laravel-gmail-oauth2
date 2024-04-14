@@ -17,6 +17,7 @@
         }
     ],
     "minimum-stability": "stable",
+    "prefer-stable": false,
     "require": {
         "php": "^7.0 || ^8.0",
         "league/oauth2-google": "^4.0",
@@ -33,6 +34,5 @@
                 "Iagofelicio\\LaravelGmailOauth2\\Providers\\GmailServiceProvider"
             ]
         }
-    },
-    "prefer-stable": false
+    }
 }
