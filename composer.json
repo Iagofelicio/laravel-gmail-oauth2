@@ -16,7 +16,7 @@
             "email": "iagofelicio@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "^7.0 || ^8.0",
         "league/oauth2-google": "^4.0",
@@ -33,6 +33,5 @@
                 "Iagofelicio\\LaravelGmailOauth2\\Providers\\GmailServiceProvider"
             ]
         }
-    },
-    "prefer-stable": true
+    }
 }
