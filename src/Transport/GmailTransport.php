@@ -5,8 +5,6 @@ namespace Iagofelicio\LaravelGmailOauth2\Transport;
 use Swift;
 use Exception;
 use Dotenv\Dotenv;
-use App\Models\Emails;
-use Psr\Log\LoggerInterface;
 use PHPMailer\PHPMailer\SMTP;
 use Swift_Mime_SimpleMessage;
 use PHPMailer\PHPMailer\OAuth;
