@@ -1,0 +1,38 @@
+{
+    "name": "iagofelicio/laravel-gmail-oauth2",
+    "description": "Send emails with Gmail OAuth2 credentials instead of SMTP default access information",
+    "keywords": [
+        "pending"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Iagofelicio\\LaravelGmailOauth2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Iago Felicio",
+            "email": "iagofelicio@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0 || ^8.0",
+        "illuminate/support": "^8.0",
+        "league/oauth2-google": "^4.0",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.7",
+        "phpunit/phpunit": "^9.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Iagofelicio\\LaravelGmailOauth2\\Providers\\GmailServiceProvider"
+            ]
+        }
+    },
+    "prefer-stable": true
+}
