@@ -21,10 +21,10 @@
     "require": {
         "php": "^7.0 || ^8.0",
         "league/oauth2-google": "^4.0",
+        "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0",
         "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {
-        "illuminate/support": "^8.0",
         "orchestra/testbench": "^6.7",
         "phpunit/phpunit": "^9.5"
     },
