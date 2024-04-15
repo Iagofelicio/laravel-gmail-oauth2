@@ -21,7 +21,7 @@
     "require": {
         "php": "^7.0",
         "league/oauth2-google": "^4.0",
-        "illuminate/support": "^8.0 ",
+        "illuminate/support": ">=8.0 ",
         "phpmailer/phpmailer": "^6.9"
     },
     "require-dev": {
