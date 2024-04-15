@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace Iagofelicio\LaravelGmailOauth2\Providers;
 
 use Exception;
 use Dotenv\Dotenv;
