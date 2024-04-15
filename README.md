@@ -21,6 +21,12 @@ Your support helps keep this project alive and thriving!
 
 You can install the package via composer:
 
+For PHP 8 and Laravel 9:
+
+```bash
+composer require iagofelicio/laravel-gmail-oauth2
+```
+
 For PHP 7 and Laravel 6:
 
 ```bash
@@ -38,7 +44,7 @@ This tutorial walks you through the process step-by-step, ensuring a smooth setu
 
 ## Usage
 
-For PHP 7 and Laravel 6:
+### For PHP 7 and Laravel 6:
 
 Edit `config/mail.php` adding the following line:
 
@@ -50,6 +56,33 @@ return [
     // Default code ...
 ];
 ```
+
+### For PHP 8 and Laravel 9:
+
+Edit `config/mail.php` adding the following mailer:
+
+```php
+return [
+
+    'mailers' => [
+        
+        // Default code ...
+
+        'gmail' => [
+            'transport' => 'gmail',
+        ],
+    ]    
+];
+```
+
+Edit the MAIL_MAILER in `.env` file:
+
+```bash
+MAIL_MAILER=gmail
+```
+
+
+### For Laravel 6 and Laravel 9:
 
 Add your Gmail credentials in `.env` file:
 
