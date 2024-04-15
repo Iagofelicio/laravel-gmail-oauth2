@@ -38,6 +38,8 @@ This tutorial walks you through the process step-by-step, ensuring a smooth setu
 
 ## Usage
 
+For PHP 7 and Laravel 6:
+
 Edit `config/mail.php` adding the following line:
 
 ```php
