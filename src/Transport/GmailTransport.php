@@ -1,6 +1,6 @@
 <?php
 
-namespace Iagofelicio\LaravelGmailOauth2\Providers;
+namespace Iagofelicio\LaravelGmailOauth2\Transport;
 
 use Exception;
 use Dotenv\Dotenv;
