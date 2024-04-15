@@ -19,7 +19,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": "^7.0",
+        "php": ">=8.0",
         "league/oauth2-google": "^4.0",
         "illuminate/support": "^8.0 ",
         "phpmailer/phpmailer": "^6.9"
