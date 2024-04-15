@@ -24,7 +24,7 @@ You can install the package via composer:
 For PHP 7 and Laravel 6:
 
 ```bash
-composer require iagofelicio/laravel-gmail-oauth2
+composer require iagofelicio/laravel-gmail-oauth2:1.0.0
 ```
 
 ## Gmail Credentials
