@@ -1,18 +1,19 @@
 <?php
 
-namespace Iagofelicio\LaravelGmailOauth2\Transport;
+namespace App\Mail;
 
-use Swift;
 use Exception;
 use Dotenv\Dotenv;
 use PHPMailer\PHPMailer\SMTP;
-use Swift_Mime_SimpleMessage;
 use PHPMailer\PHPMailer\OAuth;
 use PHPMailer\PHPMailer\PHPMailer;
-use Illuminate\Mail\Transport\Transport;
+use MailchimpTransactional\ApiClient;
 use League\OAuth2\Client\Provider\Google;
+use Symfony\Component\Mailer\SentMessage;
+use Symfony\Component\Mime\MessageConverter;
+use Symfony\Component\Mailer\Transport\AbstractTransport;
 
-class GmailTransport extends Transport
+class GmailTransport extends AbstractTransport
 {
     /**
      * The Gmail Client ID
@@ -65,6 +66,7 @@ class GmailTransport extends Transport
      */
     public function __construct()
     {
+        parent::__construct();
         $env = Dotenv::createArrayBacked(base_path())->load();
         $this->clientId = $env['GMAIL_API_CLIENT_ID'];
         $this->clientSecret = $env['GMAIL_API_CLIENT_SECRET'];
@@ -85,13 +87,13 @@ class GmailTransport extends Transport
     }
 
     /**
-     * Send emails using Gmail API.
-     *
-     * @param  mixed  $params
-     * @return void
+     * {@inheritDoc}
      */
-    public function send(Swift_Mime_SimpleMessage $message, &$failedRecipients = null)
+    protected function doSend(SentMessage $message): void
     {
+
+        $email = MessageConverter::toEmail($message->getOriginalMessage());
+
         $mail = new PHPMailer(true);
         $provider = new Google(
             [
@@ -120,48 +122,66 @@ class GmailTransport extends Transport
                 )
             );
 
-            $mail->setFrom($this->fromAddress, $this->fromName);
-            foreach($message->getTo() as $toMail => $toName){
-                $mail->addAddress($toMail,$toName);
+
+            $fromAddresses = $email->getFrom();
+            if(isset($fromAddresses)){
+                foreach($fromAddresses as $from){
+                    $mail->setFrom($from->getAddress(),$from->getName());
+                }
+            } else {
+                $mail->setFrom($this->fromAddress, $this->fromName);
             }
-            $cc = $message->getCc();
+
+            foreach($email->getTo() as $to){
+                $mail->addAddress($to->getAddress(),$to->getName());
+            }
+
+
+            $cc = $email->getCc();
             if(isset($cc)){
-                foreach($cc as $ccMail => $ccName){
-                    $mail->addCC($ccMail, $ccName);
+                foreach($cc as $cc){
+                    $mail->addCC($cc->getAddress(), $cc->getName());
                 }
             }
 
-            $bcc = $message->getBcc();
+            $bcc = $email->getBcc();
             if(isset($bcc)){
-                foreach($bcc as $bccMail => $bccName){
-                    $mail->addBCC($bccMail, $bccName);
+                foreach($bcc as $bcc){
+                    $mail->addBCC($bcc->getAddress(), $bcc->getName());
                 }
             }
-            $mail->Subject = $message->getSubject();
+
+            $mail->Subject = $email->getSubject();
             $mail->CharSet = PHPMailer::CHARSET_UTF8;
-            $body = $message->getBody();
+            $body = $email->getHtmlBody();
             $mail->msgHTML($body);
-            $messageChildren = $message->getChildren();
-            if(isset($messageChildren)){
-                foreach ($messageChildren as $child) {
-                    if (method_exists($child, 'getDisposition')) {
-                        if($child->getDisposition() == "attachment"){
-                            $filename = $child->getFilename();
-                            $attachmentData = $child->getBody();
-                            $mail->addStringAttachment($attachmentData, $filename);
-                        }
-                    }
+
+            $attachments = $email->getAttachments();
+            if(isset($attachments)){
+                foreach($attachments as $attachment){
+                    $filename = $attachment->getFilename();
+                    $attachmentData = $attachment->getBody();
+                    $mail->addStringAttachment($attachmentData, $filename);
                 }
             }
 
             if( $mail->send() ) {
-                return $this->numberOfRecipients($message);
             } else {
                 throw new Exception("Failed to send email.");
             }
         } catch(Exception $e) {
             throw new Exception("Failed to send email. Exception: ". $e->getMessage());
         }
+
     }
 
+    /**
+     * Get the string representation of the transport.
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return 'gmail';
+    }
 }

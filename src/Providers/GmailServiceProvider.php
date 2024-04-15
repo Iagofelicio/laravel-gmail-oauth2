@@ -2,7 +2,7 @@
 
 namespace Iagofelicio\LaravelGmailOauth2\Providers;
 
-use Illuminate\Mail\MailManager;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\ServiceProvider;
 use Iagofelicio\LaravelGmailOauth2\Transport\GmailTransport;
 
@@ -15,12 +15,7 @@ class GmailServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->extend(MailManager::class, function ($manager, $app) {
-            $manager->extend('gmail', function ($app) {
-                return new GmailTransport();
-            });
-            return $manager;
-        });
+        //
     }
 
     /**
@@ -30,6 +25,8 @@ class GmailServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Mail::extend('gmail', function (array $config = []) {
+            return new GmailTransport();
+        });
     }
 }
