@@ -30,7 +30,7 @@ composer require iagofelicio/laravel-gmail-oauth2
 For PHP 7 and Laravel 6:
 
 ```bash
-composer require iagofelicio/laravel-gmail-oauth2:1.0.1
+composer require iagofelicio/laravel-gmail-oauth2:1.0.3
 ```
 
 ## Gmail Credentials
