@@ -27,10 +27,10 @@ For PHP 8 and Laravel 9:
 composer require iagofelicio/laravel-gmail-oauth2
 ```
 
-For PHP 7 and Laravel 6:
+For PHP 7 and Laravel 7/8:
 
 ```bash
-composer require iagofelicio/laravel-gmail-oauth2:1.0.1
+composer require iagofelicio/laravel-gmail-oauth2:1.0.4
 ```
 
 ## Gmail Credentials
@@ -44,7 +44,7 @@ This tutorial walks you through the process step-by-step, ensuring a smooth setu
 
 ## Usage
 
-### For PHP 7 and Laravel 6:
+### (Step 1) For PHP 7 and Laravel 7/8:
 
 Edit `config/mail.php` adding the following line:
 
@@ -57,7 +57,7 @@ return [
 ];
 ```
 
-### For PHP 8 and Laravel 9:
+### (Step 1) For PHP 8 and Laravel 9:
 
 Edit `config/mail.php` adding the following mailer:
 
@@ -82,7 +82,7 @@ MAIL_MAILER=gmail
 ```
 
 
-### For Laravel 6 and Laravel 9:
+### (Step 2) For Laravel 7, 8 and 9:
 
 Add your Gmail credentials in `.env` file:
 
